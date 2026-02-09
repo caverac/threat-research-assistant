@@ -92,7 +92,7 @@ curl -X POST "http://localhost:8000/query" \
 ## Development
 
 ```bash
-# Run tests (197 tests)
+# Run tests
 make test
 
 # Lint (flake8 + pylint + pydocstyle)
