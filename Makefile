@@ -17,7 +17,7 @@ help:
 
 # Development setup
 install:
-	uv sync
+	uv sync --all-packages
 	uv run pre-commit install
 	cd packages/infra && yarn install
 
@@ -31,7 +31,7 @@ test-verbose:
 # Code quality
 lint:
 	uv run flake8 packages/
-	uv run pylint packages/ --ignore=tests
+	uv run pylint packages/
 	uv run pydocstyle packages/
 
 format:

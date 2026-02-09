@@ -24,9 +24,9 @@ jobs:
       - uses: astral-sh/setup-uv@v6
         with:
           enable-cache: true
-      - run: uv sync
+      - run: uv sync --all-packages
       - run: uv run flake8 packages/
-      - run: uv run pylint packages/ --ignore=tests
+      - run: uv run pylint packages/
       - run: uv run pydocstyle packages/
 
   format:
@@ -40,7 +40,7 @@ jobs:
       - uses: astral-sh/setup-uv@v6
         with:
           enable-cache: true
-      - run: uv sync
+      - run: uv sync --all-packages
       - run: uv run black --check packages/
       - run: uv run isort --check packages/
 
@@ -55,7 +55,7 @@ jobs:
       - uses: astral-sh/setup-uv@v6
         with:
           enable-cache: true
-      - run: uv sync
+      - run: uv sync --all-packages
       - run: uv run mypy packages/core/src packages/ingestion/src packages/embeddings/src packages/retrieval/src packages/recommender/src packages/assistant/src packages/api/src
 
   test:
@@ -69,7 +69,7 @@ jobs:
       - uses: astral-sh/setup-uv@v6
         with:
           enable-cache: true
-      - run: uv sync
+      - run: uv sync --all-packages
       - run: uv run pytest --tb=short -q
 
   docs:
@@ -83,5 +83,5 @@ jobs:
       - uses: astral-sh/setup-uv@v6
         with:
           enable-cache: true
-      - run: uv sync
+      - run: uv sync --all-packages
       - run: cd packages/docs && uv run mkdocs build --strict
