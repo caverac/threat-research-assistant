@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="36" height="36">
+  <!-- Shield -->
+  <path d="M15 2 L27 7 L27 16 Q27 25 15 30 Q3 25 3 16 L3 7 Z"
+        fill="#311B92" stroke="#B388FF" stroke-width="0.5"/>
+
+  <!-- User badge — bottom right -->
+  <circle cx="27" cy="27" r="6" fill="#1A0E4F" stroke="#B388FF" stroke-width="0.5"/>
+  <!-- Head -->
+  <circle cx="27" cy="25" r="2" fill="#FFAB00"/>
+  <!-- Shoulders -->
+  <path d="M23.2 31 Q23.2 28 27 28 Q30.8 28 30.8 31"
+        fill="#FFAB00" stroke="none"/>
+</svg>

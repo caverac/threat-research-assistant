@@ -1,0 +1,67 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Testing
+.pytest_cache/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+
+# Type checking
+.mypy_cache/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node (CDK)
+node_modules/
+.yarn/
+packages/infra/cdk.out/
+
+# Ruff
+.ruff_cache/
+
+# Synthetic data
+data/
+
+# Models
+*.joblib
+*.pkl
+*.bin
+models/
+
+# FAISS
+*.faiss
+*.index
+
+# Environment
+.env
+.env.*
+
+# Documentation build
+site/
+packages/docs/site/
+
+# UV
+uv.lock

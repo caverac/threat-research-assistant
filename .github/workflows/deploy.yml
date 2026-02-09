@@ -1,0 +1,79 @@
+name: Deploy Infrastructure
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "packages/infra/**"
+      - "packages/core/**"
+      - "packages/ingestion/**"
+      - "packages/embeddings/**"
+      - "packages/retrieval/**"
+      - "packages/recommender/**"
+      - "packages/assistant/**"
+      - "packages/api/**"
+      - "Dockerfile"
+      - "lambda/**"
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - run: uv sync
+      - run: uv run pytest --tb=short -q
+
+  cdk-deploy:
+    name: CDK Deploy
+    needs: test
+    runs-on: ubuntu-latest
+    environment: aws-production
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      # - uses: aws-actions/configure-aws-credentials@v4
+      #   with:
+      #     role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
+      #     aws-region: ${{ vars.AWS_REGION || 'us-east-1' }}
+
+      # - run: uv sync
+
+      # - name: Install CDK dependencies
+      #   working-directory: packages/infra
+      #   run: yarn install --immutable
+
+      # - name: CDK diff
+      #   working-directory: packages/infra
+      #   run: yarn cdk diff --all
+
+      # - name: CDK deploy
+      #   working-directory: packages/infra
+      #   run: yarn cdk deploy --all --require-approval never

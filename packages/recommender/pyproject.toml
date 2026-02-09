@@ -1,0 +1,20 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "recommender"
+version = "0.1.0"
+description = "LightGBM learning-to-rank recommender for OT threat intelligence"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "core",
+    "numpy>=1.26",
+    "lightgbm>=4.3",
+    "joblib>=1.3",
+    "scikit-learn>=1.4",
+    "pandas>=2.2",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/recommender"]

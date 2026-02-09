@@ -1,0 +1,22 @@
+{
+  "pythonVersion": "3.12",
+  "venvPath": ".",
+  "venv": ".venv",
+  "extraPaths": [
+    "packages/core/src",
+    "packages/ingestion/src",
+    "packages/embeddings/src",
+    "packages/retrieval/src",
+    "packages/recommender/src",
+    "packages/assistant/src",
+    "packages/api/src",
+    "packages/infra/src",
+    "packages/docs/src"
+  ],
+  "exclude": [
+    "**/node_modules",
+    "**/cdk.out",
+    "**/.yarn",
+    "**/site"
+  ]
+}

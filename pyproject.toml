@@ -1,0 +1,132 @@
+[project]
+name = "threat-research-assistant"
+version = "0.1.0"
+description = "OT Threat Research Assistant — RAG + LightGBM recommender powered by AWS Bedrock"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "core",
+    "ingestion",
+    "embeddings",
+    "retrieval",
+    "recommender",
+    "assistant",
+    "api",
+]
+
+[tool.uv.workspace]
+members = ["packages/*"]
+
+[tool.uv.sources]
+core = { workspace = true }
+ingestion = { workspace = true }
+embeddings = { workspace = true }
+retrieval = { workspace = true }
+recommender = { workspace = true }
+assistant = { workspace = true }
+api = { workspace = true }
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=6.0",
+    "pytest-asyncio>=0.24",
+    "black>=24.0",
+    "isort>=5.13",
+    "flake8>=7.0",
+    "flake8-bugbear>=24.0",
+    "flake8-comprehensions>=3.15",
+    "pylint>=3.3",
+    "pydocstyle>=6.3",
+    "mypy>=1.8",
+    "pre-commit>=4.0",
+    "httpx>=0.27",
+]
+
+[tool.black]
+line-length = 150
+target-version = ["py312"]
+
+[tool.isort]
+profile = "black"
+line_length = 150
+known_first_party = ["core", "ingestion", "embeddings", "retrieval", "recommender", "assistant", "api", "infra", "docs"]
+
+[tool.pylint.main]
+py-version = "3.12"
+jobs = 0
+ignore = ["node_modules", "cdk.out", ".yarn"]
+ignore-paths = [".*/__pycache__/.*", "packages/docs/.*", ".*/\\.yarn/.*"]
+
+[tool.pylint.format]
+max-line-length = 150
+
+[tool.pylint.messages_control]
+disable = [
+    "too-few-public-methods",
+    "too-many-instance-attributes",
+    "too-many-locals",
+    "too-many-positional-arguments",
+    "duplicate-code",
+]
+
+[tool.pylint.design]
+max-args = 10
+
+[tool.pydocstyle]
+convention = "numpy"
+add-ignore = ["D100", "D104", "D105"]
+match-dir = "(?!tests|node_modules|cdk\\.out).*"
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+exclude = [
+    "__pycache__",
+    "\\.pyc$",
+    "packages/docs/",
+    "node_modules/",
+    "cdk\\.out/",
+    "conftest\\.py$",
+]
+
+[[tool.mypy.overrides]]
+module = ["joblib", "lightgbm", "lightgbm.*", "faiss", "boto3", "botocore.*", "pandas"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["packages/*/tests"]
+asyncio_mode = "auto"
+addopts = [
+    "--import-mode=importlib",
+    "--strict-markers",
+    "--cov=packages",
+    "--cov-report=term-missing",
+    "--cov-report=html:htmlcov",
+    "--cov-config=pyproject.toml",
+    "-W", "ignore::DeprecationWarning:importlib._bootstrap",
+]
+
+[tool.coverage.run]
+source = ["packages/*/src"]
+omit = [
+    "*/tests/*",
+    "packages/infra/*",
+    "packages/docs/*",
+]
+
+[tool.coverage.report]
+fail_under = 100
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.",
+    "if TYPE_CHECKING:",
+    "pass",
+    "@overload",
+    "\\.\\.\\.",
+    "@abstractmethod",
+]

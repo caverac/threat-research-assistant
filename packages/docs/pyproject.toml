@@ -1,0 +1,17 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "docs"
+version = "0.1.0"
+description = "Documentation for OT Threat Research Assistant"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "mkdocs>=1.5",
+    "mkdocs-material>=9.5",
+    "mkdocstrings[python]>=0.24",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/docs"]

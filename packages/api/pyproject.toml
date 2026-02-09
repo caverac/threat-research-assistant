@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "api"
+version = "0.1.0"
+description = "FastAPI service for OT Threat Research Assistant"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "core",
+    "ingestion",
+    "embeddings",
+    "retrieval",
+    "recommender",
+    "assistant",
+    "fastapi>=0.110",
+    "uvicorn>=0.27",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/api"]

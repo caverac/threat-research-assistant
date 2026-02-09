@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140" width="140" height="140">
+  <!-- Shield body -->
+  <path d="M60 8 L108 28 L108 64 Q108 100 60 120 Q12 100 12 64 L12 28 Z"
+        fill="#311B92" stroke="#B388FF" stroke-width="2"/>
+
+  <!-- Inner shield highlight -->
+  <path d="M60 16 L100 33 L100 64 Q100 95 60 113 Q20 95 20 64 L20 33 Z"
+        fill="none" stroke="#7C4DFF" stroke-width="1" opacity="0.4"/>
+
+  <!-- User badge — bottom right, offset from shield -->
+  <circle cx="105" cy="105" r="22" fill="#1A0E4F" stroke="#B388FF" stroke-width="2"/>
+  <!-- Head -->
+  <circle cx="105" cy="97" r="7" fill="#FFAB00"/>
+  <!-- Shoulders -->
+  <path d="M91 118 Q91 107 105 107 Q119 107 119 118"
+        fill="#FFAB00" stroke="none"/>
+</svg>
